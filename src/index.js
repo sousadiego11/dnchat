@@ -17,8 +17,13 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 //Serves the public folder in the server
 app.use(express.static(publicDirectoryPath))
 
-io.on('connection', () => {
-    console.log('web connection')
+io.on('connection', (socket) => {
+    console.log('New web connection!')
+    socket.emit('message', 'Welcome!')
+
+    socket.on('clientMessage', (message) => {
+        io.emit('message', message)
+    })
 })
 
 server.listen(port, () => {
