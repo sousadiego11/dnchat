@@ -5,28 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://img.icons8.com/dusk/64/000000/armored-helmet.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>DnCHAT</title>
 </head>
 <body>
-    <h1>DnCHAT</h1>
+    <div class="chat">
+        <div class="chat__sidebar">
 
-    <div id="messages"></div>
+        </div>
+        <div class="chat__main">
+            <div id="messages" class="chat__messages"></div>
+        
+            <div class="compose">
+                <form id="message-form">
+                    <input placeholder="Digite algo.." name="message">
+                    <button type="submit" > <i class="material-icons">send</i></button>
+                </form>
+                <button id="send-location"><i class="material-icons">share_location</i></button>
+            </div>
 
-    <form id="message-form">
-        <input placeholder="Digite algo.." name="message">
-        <button type="submit" >Enviar</button>
-    </form>
-    <button id="send-location">Enviar localização</button>
+        </div>
+    </div>
 
     <script id="message-template" type="text/html">
-        <div>
-            <p>{{createdAt}} - {{message}}</p>    
+        <div class="message">
+            <p>
+                <span class="message__name" >Algum usuário</span>
+                <span class="message__meta" >{{createdAt}}</span>
+            </p>
+            <p>{{message}}</p>    
         </div>
     </script>
 
     <script id="location-template" type="text/html">
-        <div>
-            <p>{{createdAt}} - <a href="{{location}}" target="_blank">Esta é minha localização!</a></p>    
+        <div class="message">
+            <p>
+                <span class="message__name" >Algum usuário</span>
+                <span class="message__meta" >{{createdAt}}</span>
+            </p>
+            <p><a href="{{location}}" target="_blank">Esta é minha localização!</a></p>    
         </div>
     </script>
 
