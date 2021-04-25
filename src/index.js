@@ -22,9 +22,13 @@ app.use(express.static(publicDirectoryPath))
 io.on('connection', (socket) => {
     console.log('New web connection!')
 
-    socket.emit('message', generateMessage('Seja bem vindo!'))
+    socket.on('join', ({ username, room }) => {
+        socket.join(room)
 
-    socket.broadcast.emit('message', generateMessage('Um novo usuário entrou!'))
+        
+        socket.emit('message', generateMessage('Seja bem vindo!'))
+        socket.broadcast.to(room).emit('message', generateMessage(`${username} entrou!`))
+    })
 
     socket.on('clientMessage', (message, callback) => {
         const filter = new Filter()
@@ -33,7 +37,7 @@ io.on('connection', (socket) => {
             return callback('Profanity is not allowed')
         }
 
-        io.emit('message', generateMessage(message))
+        io.to('palhoca').emit('message', generateMessage(message))
         callback()
     })
 
