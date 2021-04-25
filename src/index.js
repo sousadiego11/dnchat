@@ -21,8 +21,8 @@ app.use(express.static(publicDirectoryPath))
 io.on('connection', (socket) => {
     console.log('New web connection!')
 
-    socket.emit('message', 'Welcome!')
-    socket.broadcast.emit('message', 'A new user has joined!')
+    socket.emit('message', 'Seja bem vindo!')
+    socket.broadcast.emit('message', 'Um novo usuário entrou!')
 
     socket.on('clientMessage', (message, callback) => {
         const filter = new Filter()
@@ -36,14 +36,15 @@ io.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
-        io.emit('message', 'A user has left')
+        io.emit('message', 'Um usuário saiu')
     })
 
     socket.on('sendLocation', (currentLocation, callback) => {
         const locationURL = `https://google.com/maps?q=${currentLocation.latitude},${currentLocation.longitude}`
-        io.emit('message', locationURL)
+        io.emit('locationMessage', locationURL)
         callback()
     })
+
 })
 
 server.listen(port, () => {
