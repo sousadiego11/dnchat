@@ -19,7 +19,7 @@
         
             <div class="compose">
                 <form id="message-form">
-                    <input placeholder="Digite algo.." name="message">
+                    <input placeholder="Digite algo.." name="message" required autocomplete="off" >
                     <button type="submit" > <i class="material-icons">send</i></button>
                 </form>
                 <button id="send-location"><i class="material-icons">share_location</i></button>
@@ -31,7 +31,7 @@
     <script id="message-template" type="text/html">
         <div class="message">
             <p>
-                <span class="message__name" >Algum usuário</span>
+                <span class="message__name" >{{username}}</span>
                 <span class="message__meta" >{{createdAt}}</span>
             </p>
             <p>{{message}}</p>    
@@ -41,7 +41,7 @@
     <script id="location-template" type="text/html">
         <div class="message">
             <p>
-                <span class="message__name" >Algum usuário</span>
+                <span class="message__name" >{{username}}</span>
                 <span class="message__meta" >{{createdAt}}</span>
             </p>
             <p><a href="{{location}}" target="_blank">Esta é minha localização!</a></p>    
